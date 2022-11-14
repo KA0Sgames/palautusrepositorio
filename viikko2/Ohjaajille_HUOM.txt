@@ -1,0 +1,13 @@
+Tehtävässä 9, kun jäljessä olevasta main haarasta yritti pushata, tuli rejected ilmoitus oletetusti.
+Kuitenkin kun pullasin GitHubista, niin sen sijaan, että olisi avautunut merge committia varten tekstieditori johon voisi jättää viestin,
+niin pull haki GitHubin tiedot ja komento mergesi automaattisesti seuraavan viestin kera:
+
+From github.com:KA0Sgames/palautusrepositorio
+   fe9b4c3..a141a14  main       -> origin/main
+Merge made by the 'ort' strategy.
+ viikko2/mainhaaraantiedostoteht9varten.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 viikko2/mainhaaraantiedostoteht9varten.txt
+
+Eli en päässyt kirjoittamaan merge commit viestiä, ja muutokset mergettiin automaattisesti. En tiedä näkyykö tämä GitHubissa, mutta
+jätän tämän viestin, jotta näkyy, että olen tehnyt tehtävän loppuun asti.
