@@ -20,13 +20,16 @@ def main():
         )
 
         players.append(player)
+    
+    filtered_players = list(filter(lambda x: x.nationality == "FIN", players))
+    filtered_players.sort(key=lambda c: c.goals + c.assists, reverse=True)
+
 
     #print("Oliot:")
     print("Players from FIN\n")
 
-    for player in players:
-        if player.nationality == "FIN":
-            print(player)
+    for player in filtered_players:
+        print(player)
 
 if __name__ == "__main__":
     main()
