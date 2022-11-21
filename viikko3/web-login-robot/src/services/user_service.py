@@ -56,6 +56,9 @@ class UserService:
         if not re.match("^[a-z]*[^a-z]+[a-z]*$", password):
             raise UserInputError("Password must contain at least one character outside of a-z")
 
+        if not password_confirmation:
+            raise UserInputError("Password confirmation required")
+
         if not password == password_confirmation:
             raise UserInputError("Password and confirmation don't match")
 

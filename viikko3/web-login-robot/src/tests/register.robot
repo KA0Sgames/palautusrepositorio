@@ -1,5 +1,6 @@
 *** Settings ***
 Resource  resource.robot
+Resource  login_resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
 Test Setup  Go To Register Page
@@ -32,6 +33,24 @@ Register With Nonmatching Password And Password Confirmation
     Set Confirmation  salasana1
     Submit Information
     Register Should Fail With Message  Password and confirmation don't match
+
+Login After Successful Registration
+    Set Username  ${USERNAME}
+    Set Password  ${VALID_PASSWORD}
+    Set Confirmation  ${VALID_PASSWORD}
+    Submit Information
+    Register Should Succeed
+    Login With Valid Credentials
+    Login Should Succeed
+
+Login After Failed Registration
+    Set Username  ${ANOTHER_USERNAME}
+    Set Password  ${INVALID_PASSWORD}
+    Set Confirmation  ${INVALID_PASSWORD}
+    Submit Information
+    Register Should Fail With Message  Password is too short
+    Login With Invalid Credentials
+    Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
 Set Username
