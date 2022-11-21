@@ -52,7 +52,7 @@ class UserService:
         if not re.match("[a-z]+", password):
             raise UserInputError("Password must contain letters from a-z")
 
-        if not re.match("^[a-z]*[^a-z]+[a-z]*$", password):
+        if not re.match("^([a-z]*[^a-z]+[a-z]*)+$", password):
             raise UserInputError("Password must contain at least one character outside of a-z")
 
         
