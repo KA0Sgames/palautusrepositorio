@@ -100,3 +100,37 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.tilimaksu("pekka", "12345")
 
         self.pankki_mock.tilisiirto.assert_called_with("pekka", ANY, "12345", ANY, 5)
+
+    def test_aloita_asiointi_nollaa_edellisen_ostoksen_tiedot(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", ANY, "12345", ANY, 1)
+
+    def test_kauppa_pyytaa_uuden_viitenumeron_jokaiselle_maksutapahtumalle(self):
+        self.viitegeneraattori_mock.uusi.side_effect = [1, 2, 3]
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.pankki_mock.tilisiirto.assert_called_with(ANY, 1, ANY, ANY, ANY)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.pankki_mock.tilisiirto.assert_called_with(ANY, 2, ANY, ANY, ANY)
+
+    def test_tuotteen_poiston_jalkeen_tilisiirtoa_kutsutaan_oikeilla_parametreilla(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.poista_korista(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", ANY, "12345", ANY, 5)
