@@ -1,9 +1,15 @@
 class TennisGame:
+    ZERO_WON_POINTS = 0
+    ONE_WON_POINT = 1
+    TWO_WON_POINTS = 2
+    THREE_WON_POINTS = 3
+    FOUR_WON_POINTS = 4
+
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
-        self.player1_score = 0
-        self.player2_score = 0
+        self.player1_score = self.ZERO_WON_POINTS
+        self.player2_score = self.ZERO_WON_POINTS
 
     def won_point(self, player_name):
         if player_name == "player1":
@@ -11,16 +17,16 @@ class TennisGame:
         else:
             self.player2_score = self.player2_score + 1
 
-    def get_even_score(self, won_points):
+    def get_even_score(self, won_points_per_player):
         scores = {
-            0: "Love-All",
-            1: "Fifteen-All",
-            2: "Thirty-All",
-            3: "Forty-All"
+            self.ZERO_WON_POINTS: "Love-All",
+            self.ONE_WON_POINT: "Fifteen-All",
+            self.TWO_WON_POINTS: "Thirty-All",
+            self.THREE_WON_POINTS: "Forty-All"
             }
 
-        if won_points in scores:
-            return scores[won_points]
+        if won_points_per_player in scores:
+            return scores[won_points_per_player]
         else:
             return "Deuce"
 
@@ -31,7 +37,7 @@ class TennisGame:
         if self.player1_score == self.player2_score:
             score = self.get_even_score(self.player1_score)
 
-        elif self.player1_score >= 4 or self.player2_score >= 4:
+        elif self.player1_score >= self.FOUR_WON_POINTS or self.player2_score >= self.FOUR_WON_POINTS:
             minus_result = self.player1_score - self. player2_score
 
             if minus_result == 1:
@@ -50,13 +56,13 @@ class TennisGame:
                     score = score + "-"
                     temp_score = self.player2_score
 
-                if temp_score == 0:
+                if temp_score == self.ZERO_WON_POINTS:
                     score = score + "Love"
-                elif temp_score == 1:
+                elif temp_score == self.ONE_WON_POINT:
                     score = score + "Fifteen"
-                elif temp_score == 2:
+                elif temp_score == self.TWO_WON_POINTS:
                     score = score + "Thirty"
-                elif temp_score == 3:
+                elif temp_score == self.THREE_WON_POINTS:
                     score = score + "Forty"
 
         return score
