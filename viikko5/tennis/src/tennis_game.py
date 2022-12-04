@@ -12,7 +12,7 @@ class TennisGame:
         self.player2_score = self.ZERO_WON_POINTS
 
     def won_point(self, player_name):
-        if player_name == "player1":
+        if player_name == self.player1_name:
             self.player1_score = self.player1_score + 1
         else:
             self.player2_score = self.player2_score + 1
@@ -52,30 +52,28 @@ class TennisGame:
 
         return difference_of_points[minus_result]
 
-    def get_score(self):
-        score = ""
-        temp_score = 0
+    def get_uneven_score_with_players_having_less_than_four_points_won_each(self):
+        representation_of_points_won = {
+            self.ZERO_WON_POINTS: "Love",
+            self.ONE_WON_POINT: "Fifteen",
+            self.TWO_WON_POINTS: "Thirty",
+            self.THREE_WON_POINTS: "Forty"
+        }
 
+        representation_of_score = representation_of_points_won[self.player1_score]
+        representation_of_score += "-"
+        representation_of_score += representation_of_points_won[self.player2_score]
+
+        return representation_of_score
+
+
+
+    def get_score(self):
         if self.player1_score == self.player2_score:
             score = self.get_even_score(self.player1_score)
-
         elif self.player1_score >= self.FOUR_WON_POINTS or self.player2_score >= self.FOUR_WON_POINTS:
             score = self.get_uneven_score_with_four_or_over_points_won_by_one_player()
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.player1_score
-                else:
-                    score = score + "-"
-                    temp_score = self.player2_score
-
-                if temp_score == self.ZERO_WON_POINTS:
-                    score = score + "Love"
-                elif temp_score == self.ONE_WON_POINT:
-                    score = score + "Fifteen"
-                elif temp_score == self.TWO_WON_POINTS:
-                    score = score + "Thirty"
-                elif temp_score == self.THREE_WON_POINTS:
-                    score = score + "Forty"
+            score = self.get_uneven_score_with_players_having_less_than_four_points_won_each()
 
         return score
