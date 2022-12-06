@@ -13,3 +13,6 @@ class Sovelluslogiikka:
 
     def aseta_arvo(self, arvo):
         self.tulos = arvo
+
+    def hae_arvo(self):
+        return self.tulos
