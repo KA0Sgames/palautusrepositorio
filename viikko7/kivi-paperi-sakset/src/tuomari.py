@@ -34,3 +34,5 @@ class Tuomari:
             return True
 
         return False
+
+oletus_tuomari = Tuomari()
