@@ -1,2 +1,2 @@
-[Eka linkki](https://github.com/neoh1/ohtugroup2/commit/68d55085f0fc7b303f03d7519a07d8d3cb8b7e09)
-[Toka linkki](https://github.com/neoh1/ohtugroup2/commit/667e069c98a40fe23fcea582fabbde4198b36ad9)
+[Linkki ekaan mergeen](https://github.com/neoh1/ohtugroup2/commit/68d55085f0fc7b303f03d7519a07d8d3cb8b7e09)  
+[Linkki tokaan mergeen](https://github.com/neoh1/ohtugroup2/commit/667e069c98a40fe23fcea582fabbde4198b36ad9)
