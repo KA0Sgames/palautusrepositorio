@@ -1,8 +1,6 @@
-from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
-from kps_tekoaly import KPSTekoaly
-from kps_parempi_tekoaly import KPSParempiTekoaly
-from tuomari import oletus_tuomari
-from tekoaly import oletus_tekoaly
+from kps_tehdas import KPSTehdas
+
+VASTAUKSEN_VIIMEINEN_MERKKI = -1
 
 def print_pelin_loppu():
     print(
@@ -10,9 +8,6 @@ def print_pelin_loppu():
             )
 
 def main():
-    tuomari = oletus_tuomari
-    normaali_tekoaly = oletus_tekoaly
-
     while True:
         print("Valitse pelataanko"
               "\n (a) Ihmistä vastaan"
@@ -23,23 +18,13 @@ def main():
 
         vastaus = input()
 
-        if vastaus.endswith("a"):
-            print_pelin_loppu()
-
-            kaksinpeli = KPSPelaajaVsPelaaja(tuomari, None)
-            kaksinpeli.pelaa()
-        elif vastaus.endswith("b"):
-            print_pelin_loppu()
-
-            yksinpeli = KPSTekoaly(tuomari, normaali_tekoaly)
-            yksinpeli.pelaa()
-        elif vastaus.endswith("c"):
-            print_pelin_loppu()
-
-            haastava_yksinpeli = KPSParempiTekoaly()
-            haastava_yksinpeli.pelaa()
-        else:
+        if not(vastaus.endswith("a") or vastaus.endswith("b") or vastaus.endswith("c")):
             break
+        
+        print_pelin_loppu()
+
+        peli = KPSTehdas.luo_peli(vastaus[VASTAUKSEN_VIIMEINEN_MERKKI])
+        peli.pelaa()
 
 if __name__ == "__main__":
     main()

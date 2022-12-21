@@ -35,4 +35,6 @@ class Tuomari:
 
         return False
 
-oletus_tuomari = Tuomari()
+    @staticmethod
+    def luo_tuomari():
+        return Tuomari()

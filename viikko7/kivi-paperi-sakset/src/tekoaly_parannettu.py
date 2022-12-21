@@ -49,3 +49,7 @@ class TekoalyParannettu:
 
         # Tehokkaampiakin tapoja löytyy, mutta niistä lisää
         # Johdatus Tekoälyyn kurssilla!
+
+    @staticmethod
+    def luo_tekoaly(muistin_koko):
+        return TekoalyParannettu(muistin_koko)

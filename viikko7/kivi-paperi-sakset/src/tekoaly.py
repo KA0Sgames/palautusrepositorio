@@ -17,4 +17,6 @@ class Tekoaly:
         # ei tehdä mitään
         pass
 
-oletus_tekoaly = Tekoaly()
+    @staticmethod
+    def luo_tekoaly():
+        return Tekoaly()

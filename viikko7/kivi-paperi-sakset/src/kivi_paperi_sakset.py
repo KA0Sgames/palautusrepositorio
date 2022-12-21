@@ -6,17 +6,18 @@ class KiviPaperiSakset:
     def pelaa(self):
 
         while True:
-            ekan_siirto = self._ensimmaisen_siirto()
+            self.ekan_siirto = self._ensimmaisen_siirto()
             tokan_siirto = self._toisen_siirto()
 
-            if not (self._onko_ok_siirto(ekan_siirto) and self._onko_ok_siirto(tokan_siirto)):
+            if not (self._onko_ok_siirto(self.ekan_siirto) and self._onko_ok_siirto(tokan_siirto)):
                 break
 
-            self._tuomari.kirjaa_siirto(ekan_siirto, tokan_siirto)
+            self._tuomari.kirjaa_siirto(self.ekan_siirto, tokan_siirto)
             print(self._tuomari)
 
         print("Kiitos!")
-        print(self._tuomari)
+        # Poistetaan tuomarin uudelleen printtaus copy-pastena, viimeisen pelatun pelin jälkeen jo printattu
+        # print(self._tuomari)
 
     def _ensimmaisen_siirto(self):
         return input("Ensimmäisen pelaajan siirto: ")
